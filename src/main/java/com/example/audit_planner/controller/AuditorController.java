@@ -61,7 +61,7 @@ public class AuditorController {
 	public ResponseEntity<Auditor> createAuditor(@RequestBody Auditor auditor){
 		try {
 			Auditor _auditor = auditorRepo.save(new Auditor(auditor.getTeamName(),auditor.getAuditorName(),auditor.getRole(),
-					auditor.getHeadcount(),auditor.getNumberOfWorkingDays(),auditor.getNumberOfDailyWorkHours(),auditor.getTotalWorkingHours(),
+					auditor.getPassword(),auditor.getHeadcount(),auditor.getNumberOfWorkingDays(),auditor.getNumberOfDailyWorkHours(),auditor.getTotalWorkingHours(),
 					auditor.getAnnualLeaves(),auditor.getMaternityLeaves(),auditor.getAnnualPlanningActivities(),auditor.getContinuousAudit(),
 					auditor.getAdministrativeActivities(),auditor.getContingencyBudget(),auditor.getTotalAdjustment(),auditor.getAvailableHoursAudit(),
 					auditor.getActualAllocatedManhours(),auditor.getExcessShort()));
@@ -80,6 +80,7 @@ public class AuditorController {
 			auditorData.setTeamName(auditor.getTeamName());
 			auditorData.setAuditorName(auditor.getAuditorName());
 			auditorData.setRole(auditor.getRole());
+			auditorData.setPassword(auditor.getPassword());
 			auditorData.setHeadcount(auditor.getHeadcount());
 			auditorData.setNumberOfWorkingDays(auditor.getNumberOfWorkingDays());
 			auditorData.setNumberOfDailyWorkHours(auditor.getNumberOfDailyWorkHours());

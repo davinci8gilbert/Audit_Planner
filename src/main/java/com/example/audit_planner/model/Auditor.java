@@ -24,6 +24,9 @@ public class Auditor {
 	@Column(name="role")
 	private String role;
 	
+	@Column(name="password")
+	private String password;
+	
 	@Column(name="headcount")
 	private int headcount;
 	
@@ -71,7 +74,7 @@ public class Auditor {
 		
 	}
 	
-	public Auditor(String teamName,String auditorName,String role, int headcount,double numberOfWorkingDays,
+	public Auditor(String teamName,String auditorName,String role, String password, int headcount,double numberOfWorkingDays,
 			double numberOfDailyWorkHours,double totalWorkingHours, double annualLeaves, double maternityLeaves,
 			double annualPlanningActivities, double continuousAudit,double administrativeActivities,double contingencyBudget,
 			double totalAdjustment,double availableHoursAudit,double actualAllocatedManhours,double excessShort) {
@@ -79,6 +82,7 @@ public class Auditor {
 		this.teamName = teamName;
 		this.auditorName=auditorName;
 		this.role=role;
+		this.password=password;
 		this.headcount=headcount;
 		this.numberOfWorkingDays=numberOfWorkingDays;
 		this.numberOfDailyWorkHours=numberOfDailyWorkHours;
@@ -118,6 +122,12 @@ public class Auditor {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public int getHeadcount() {
 		return headcount;
