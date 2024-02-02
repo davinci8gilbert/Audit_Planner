@@ -1,10 +1,21 @@
 package com.example.audit_planner.model;
 
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,6 +32,15 @@ public class Auditee {
 	@Column(name="sector")
 	private String sector;
 	
+	@OneToOne(mappedBy = "auditee", cascade = CascadeType.ALL)
+	@JsonIgnore 
+	private PreviousAudit previousAudit;
+	
+	@OneToMany(mappedBy = "auditee",cascade = CascadeType.ALL )
+	@JsonIgnore
+	private Set<AssessmentScore> assessmentScores =new HashSet<>();
+	
+	
 	public Auditee() {
 		
 	}
@@ -30,6 +50,14 @@ public class Auditee {
 		this.sector = sector;
 	}
 	
+	public void addPreviousAudit(PreviousAudit previousAudit) {
+		previousAudit.setAuditee(this);
+	}
+	
+	public void addAssessmentScore(AssessmentScore assessmentScore) {
+		this.assessmentScores.add(assessmentScore);
+		assessmentScore.setAuditee(this);
+	}
 	
 	
 	public long getId() {
@@ -50,6 +78,16 @@ public class Auditee {
 	public void setSector(String sector) {
 		this.sector = sector;
 	}
+	
+	@Override
+    public String toString() {
+        return "Auditee{" +
+                "id=" + id +
+                ", unit='" + unit + '\'' +
+                ", sector='" + sector + '\'' +
+                // add other fields as needed
+                '}';
+    }
 	
 	
 }

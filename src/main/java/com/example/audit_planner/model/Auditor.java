@@ -99,6 +99,12 @@ public class Auditor {
 		this.excessShort=excessShort;
 	}
 	
+	public Auditor(String teamName, String auditorName, String role) {
+		this.teamName = teamName;
+		this.auditorName=auditorName;
+		this.role=role;
+	}
+	
 	public long getId() {
 		return id;
 	}
