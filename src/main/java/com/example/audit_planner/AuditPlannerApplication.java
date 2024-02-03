@@ -2,6 +2,7 @@ package com.example.audit_planner;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,8 @@ import org.springframework.context.annotation.Bean;
 
 import com.example.audit_planner.model.AssessmentScore;
 import com.example.audit_planner.model.AssessmentScoreRepository;
+import com.example.audit_planner.model.AssessmentSummary;
+import com.example.audit_planner.model.AssessmentSummaryRepository;
 import com.example.audit_planner.model.Auditee;
 import com.example.audit_planner.model.AuditeeRepository;
 import com.example.audit_planner.model.Auditor;
@@ -27,52 +30,68 @@ public class AuditPlannerApplication {
 	}
 	
 	@Bean
-	ApplicationRunner init(AuditeeRepository auditeeRepo, AuditorRepository auditorRepo, PreviousAuditRepository previousAuditRepo, 
-			AssessmentScoreRepository assessmentScoreRepo) {
+	ApplicationRunner init(AuditorRepository auditorRepo, AuditeeRepository auditeeRepo,  PreviousAuditRepository previousAuditRepo, 
+			AssessmentScoreRepository assessmentScoreRepo,AssessmentSummaryRepository assessmentSummaryRepo) {
 		return args ->{
-			List<Auditee>auditees = new ArrayList<>();
 			
-			auditees.add(new Auditee("Sales","Global Markets"));
-			auditees.add(new Auditee("Wealth Management","Community Financial Services"));
-			auditees.add(new Auditee("Commercial Banking Division","Community Financial Services"));
-			auditees.add(new Auditee("Cards & Personal Loans","Community Financial Services"));
-			auditees.add(new Auditee("Retail Loans","Community Financial Services"));
-			auditees.add(new Auditee("Distribution Channel Service","Operations"));
-			auditees.add(new Auditee("Treasury","Operations"));
-			auditees.add(new Auditee("Credit Doc & Admin","Operations"));
-			auditees.add(new Auditee("Operations & Payment Support","Operations"));
-			auditees.add(new Auditee("Planning & Service Management","Operations"));
-			auditees.add(new Auditee("Property Services","Operations"));
-			auditees.add(new Auditee("Rewards","Human Capital"));
-			auditees.add(new Auditee("Resourcing & Workforce Management","Human Capital"));
-			auditees.add(new Auditee("Financial Analytics","Finance"));
-			auditees.add(new Auditee("Financial Management","Finance"));
-			auditees.add(new Auditee("Products Control","Finance"));
-			auditees.add(new Auditee("Remedial Management","Finance"));
-			auditees.add(new Auditee("Tax","Finance"));
-			auditees.add(new Auditee("Credit Management","Risk Management"));
-			auditees.add(new Auditee("Traded Risk Management","Risk Management"));
-			auditees.add(new Auditee("Portfolio Risk Management","Risk Management"));
-			auditees.add(new Auditee("Operational Risk Management","Risk Management"));
-			auditees.add(new Auditee("Enterprise Risk Management","Risk Management"));
-			auditees.add(new Auditee("Transformation Office","Strategy"));
-			auditees.add(new Auditee("Digital Banking","Strategy"));
-			auditees.add(new Auditee("Sustainability Office","Strategy"));
-			auditees.add(new Auditee("Legal-Global Banking","Legal & Corporate Office"));
-			auditees.add(new Auditee("Legal-CFS Support","Legal & Corporate Office"));
-			auditees.add(new Auditee("Corporate Affairs","Country Corporate Office"));
-			auditees.add(new Auditee("Financial Crime Compliance","Compliance"));
-			auditees.add(new Auditee("Regulatory Monitoring","Compliance"));
-			auditees.add(new Auditee("Regulatory Affairs","Compliance"));
-			auditees.add(new Auditee("Core Banking and Data Warehouse","Technology"));
-			auditees.add(new Auditee("Wealth, Branch Channel and Treasury","Technology"));
-			auditees.add(new Auditee("Digital Channels","Technology"));
-			auditees.add(new Auditee("Cards","Technology"));
-			auditees.add(new Auditee("Trade","Technology"));
-			auditees.add(new Auditee("Technology Infrastructure","Technology"));
-			auditees.add(new Auditee("Technology Risk Management","Technology"));
-			auditees.add(new Auditee("IT Security Defense","Technology"));
-			auditees.add(new Auditee("Finance and Corporate Function","Technology"));
+			//instantiation of auditors
+			List<Auditor>auditors = new ArrayList<>();
+			auditors.add(new Auditor("Operations","Clara","Manager"));
+			auditors.add(new Auditor("Credit","Farhana","Manager"));
+			auditors.add(new Auditor("Technology","Sunny","Manager"));
+			auditors.add(new Auditor("Treasury","Chee Wan","Manager"));
+			
+			auditorRepo.saveAll(auditors);
+			
+			auditorRepo.findAll().forEach(System.out::println);
+			
+			//----------------------------------------------------------------------------------------------------------
+			
+			
+			//instantiation of "auditees"
+			List<Auditee>auditees = new ArrayList<>();
+						
+			auditees.add(new Auditee("Sales","Global Markets",auditors.get(4-1)));
+			auditees.add(new Auditee("Wealth Management","Community Financial Services",auditors.get(1-1)));
+			auditees.add(new Auditee("Commercial Banking Division","Community Financial Services",auditors.get(2-1)));
+			auditees.add(new Auditee("Cards & Personal Loans","Community Financial Services",auditors.get(2-1)));
+			auditees.add(new Auditee("Retail Loans","Community Financial Services",auditors.get(2-1)));
+			auditees.add(new Auditee("Distribution Channel Service","Operations",auditors.get(1-1)));
+			auditees.add(new Auditee("Treasury","Operations",auditors.get(4-1)));
+			auditees.add(new Auditee("Credit Doc & Admin","Operations",auditors.get(2-1)));
+			auditees.add(new Auditee("Operations & Payment Support","Operations",auditors.get(1-1)));
+			auditees.add(new Auditee("Planning & Service Management","Operations",auditors.get(1-1)));
+			auditees.add(new Auditee("Property Services","Operations",auditors.get(1-1)));
+			auditees.add(new Auditee("Rewards","Human Capital",auditors.get(1-1)));
+			auditees.add(new Auditee("Resourcing & Workforce Management","Human Capital",auditors.get(1-1)));
+			auditees.add(new Auditee("Financial Analytics","Finance",auditors.get(2-1)));
+			auditees.add(new Auditee("Financial Management","Finance",auditors.get(2-1)));
+			auditees.add(new Auditee("Products Control","Finance",auditors.get(4-1)));
+			auditees.add(new Auditee("Remedial Management","Finance",auditors.get(2-1)));
+			auditees.add(new Auditee("Tax","Finance",auditors.get(1-1)));
+			auditees.add(new Auditee("Credit Management","Risk Management",auditors.get(2-1)));
+			auditees.add(new Auditee("Traded Risk Management","Risk Management",auditors.get(4-1)));
+			auditees.add(new Auditee("Portfolio Risk Management","Risk Management",auditors.get(2-1)));
+			auditees.add(new Auditee("Operational Risk Management","Risk Management",auditors.get(1-1)));
+			auditees.add(new Auditee("Enterprise Risk Management","Risk Management",auditors.get(4-1)));
+			auditees.add(new Auditee("Transformation Office","Strategy",auditors.get(1-1)));
+			auditees.add(new Auditee("Digital Banking","Strategy",auditors.get(3-1)));
+			auditees.add(new Auditee("Sustainability Office","Strategy",auditors.get(1-1)));
+			auditees.add(new Auditee("Legal-Global Banking","Legal & Corporate Office",auditors.get(4-1)));
+			auditees.add(new Auditee("Legal-CFS Support","Legal & Corporate Office",auditors.get(2-1)));
+			auditees.add(new Auditee("Corporate Affairs","Country Corporate Office",auditors.get(1-1)));
+			auditees.add(new Auditee("Financial Crime Compliance","Compliance",auditors.get(1-1)));
+			auditees.add(new Auditee("Regulatory Monitoring","Compliance",auditors.get(4-1)));
+			auditees.add(new Auditee("Regulatory Affairs","Compliance",auditors.get(4-1)));
+			auditees.add(new Auditee("Core Banking and Data Warehouse","Technology",auditors.get(3-1)));
+			auditees.add(new Auditee("Wealth, Branch Channel and Treasury","Technology",auditors.get(3-1)));
+			auditees.add(new Auditee("Digital Channels","Technology",auditors.get(3-1)));
+			auditees.add(new Auditee("Cards","Technology",auditors.get(3-1)));
+			auditees.add(new Auditee("Trade","Technology",auditors.get(3-1)));
+			auditees.add(new Auditee("Technology Infrastructure","Technology",auditors.get(3-1)));
+			auditees.add(new Auditee("Technology Risk Management","Technology",auditors.get(3-1)));
+			auditees.add(new Auditee("IT Security Defense","Technology",auditors.get(3-1)));
+			auditees.add(new Auditee("Finance and Corporate Function","Technology",auditors.get(3-1)));
 			
 			// For auditee at index 0
 			auditees.get(0).addAssessmentScore(new AssessmentScore("Change", 0.20, 2, 7, 4, 9, 1, 6, 0, 8, 3, 2, 0, 1, 5, 6, 7, 8, 9, 4));
@@ -108,41 +127,36 @@ public class AuditPlannerApplication {
 			auditees.get(2).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 3, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
 
 			// For auditee at index 4
-			auditees.get(4).addAssessmentScore(new AssessmentScore("Change", 0.20, 2, 3, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-			auditees.get(4).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-			auditees.get(4).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 1, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-			auditees.get(4).addAssessmentScore(new AssessmentScore("Financial", 0.10, 1, 2, 3, 0, 7, 8, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-			auditees.get(4).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 0, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-			auditees.get(4).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 2, 3, 1, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-			auditees.get(4).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 3, 2, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-			auditees.get(4).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-			auditees.get(4).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 3, 0, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+			auditees.get(3).addAssessmentScore(new AssessmentScore("Change", 0.20, 2, 3, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+			auditees.get(3).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+			auditees.get(3).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 1, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+			auditees.get(3).addAssessmentScore(new AssessmentScore("Financial", 0.10, 1, 2, 3, 0, 7, 8, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
+			auditees.get(3).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 0, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+			auditees.get(3).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 2, 3, 1, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+			auditees.get(3).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 3, 2, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
+			auditees.get(3).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
+			auditees.get(3).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 3, 0, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
 			
-			auditees.get(5).addAssessmentScore(new AssessmentScore("Change", 0.20));
-			auditees.get(5).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15));
-			auditees.get(5).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10));
-			auditees.get(5).addAssessmentScore(new AssessmentScore("Financial", 0.10));
-			auditees.get(5).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10));
-			auditees.get(5).addAssessmentScore(new AssessmentScore("Complexity", 0.10));
-			auditees.get(5).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10));
-			auditees.get(5).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10));
-			auditees.get(5).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05));
+			auditees.get(4).addAssessmentScore(new AssessmentScore("Change", 0.20));
+			auditees.get(4).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15));
+			auditees.get(4).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10));
+			auditees.get(4).addAssessmentScore(new AssessmentScore("Financial", 0.10));
+			auditees.get(4).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10));
+			auditees.get(4).addAssessmentScore(new AssessmentScore("Complexity", 0.10));
+			auditees.get(4).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10));
+			auditees.get(4).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10));
+			auditees.get(4).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05));
 			
 					
 			auditeeRepo.saveAll(auditees);
 
 			auditeeRepo.findAll().forEach(System.out::println);
-							
-			List<Auditor>auditors = new ArrayList<>();
-			auditors.add(new Auditor("Operations","Clara","Manager"));
-			auditors.add(new Auditor("Credit","Farhana","Manager"));
-			auditors.add(new Auditor("Technology","Sunny","Manager"));
-			auditors.add(new Auditor("Treasury","Chee Wan","Manager"));
 			
-			auditorRepo.saveAll(auditors);
+			//---------------------------------------------------------------------------------------------------------
 			
-			auditorRepo.findAll().forEach(System.out::println);
 			
+			
+			//instantiation of PreviousAudit
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			
 			List<PreviousAudit> previousAudits = new ArrayList<>();
@@ -153,20 +167,67 @@ public class AuditPlannerApplication {
 			previousAuditRepo.saveAll(previousAudits);
 			previousAuditRepo.findAll().forEach(System.out::println);	
 				
-//			List<AssessmentScore> assessmentScores = assessmentScoreRepo.findAll();
-//			List<AssessmentScore>assessmentScores5= new ArrayList<>();
-//									
-//			for (int i=0; i<assessmentScores.size();i++) {
-//				if (assessmentScores.get(i).getAuditee().getId()==5) {
-//					assessmentScores5.add(assessmentScores.get(i));
-//
-//				}
-//			}
-//			
-//			for (int i=0; i<assessmentScores5.size();i++) {
-//				System.out.println(assessmentScores5.get(i).getFactorName());
-//				}
+			//----------------------------------------------------------------------------------------------------------
 			
+			//instantiation of assessmentScores
+			List<AssessmentScore> assessmentScores = assessmentScoreRepo.findAll();
+			
+
+			double[] riskIndicators = new double[17]; // Assuming there are 17 risk indicators
+			int currentAuditeeId = -1; // Start with an invalid ID
+
+			for (int i = 0; i < assessmentScores.size(); i++) {
+			    int auditeeId = (int)assessmentScores.get(i).getAuditee().getId();
+
+			    if (auditeeId != currentAuditeeId) {
+			        if (currentAuditeeId != -1) {
+			        	
+			            AssessmentSummary assessmentSummary = new AssessmentSummary(
+			                    assessmentScores.get(i - 1).getAuditee(),
+			                    riskIndicators[0], riskIndicators[1], riskIndicators[2], riskIndicators[3],
+			                    riskIndicators[4], riskIndicators[5], riskIndicators[6], riskIndicators[7],
+			                    riskIndicators[8], riskIndicators[9], riskIndicators[10], riskIndicators[11],
+			                    riskIndicators[12], riskIndicators[13], riskIndicators[14], riskIndicators[15],
+			                    riskIndicators[16]
+			            );
+			            assessmentSummaryRepo.save(assessmentSummary);
+
+			            // Reset risk indicators for the next auditee
+			            Arrays.fill(riskIndicators, 0);
+			        }
+
+			        currentAuditeeId = auditeeId;
+			    }
+
+			    riskIndicators[0] +=(int) Math.round((assessmentScores.get(i).getCreditRiskLoanPortfolioRisk())*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[1] += (int) Math.round(assessmentScores.get(i).getCreditRiskCounterpartyCreditRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[2] += (int) Math.round(assessmentScores.get(i).getMarketRiskInterestRateRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[3] += (int) Math.round(assessmentScores.get(i).getMaketRiskCommodityPriceRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[4] += (int) Math.round(assessmentScores.get(i).getOperationalRiskFraudMisconductRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[5] += (int) Math.round(assessmentScores.get(i).getOperationalRiskBusinessContinuityRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[6] += (int) Math.round(assessmentScores.get(i).getLiquidityRiskFundingLiquidityRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[7] +=(int) Math.round (assessmentScores.get(i).getLiquidityRiskContingencyFundingRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[8] += (int) Math.round(assessmentScores.get(i).getComplianceRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[9] += (int) Math.round(assessmentScores.get(i).getLegalRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[10] +=(int) Math.round (assessmentScores.get(i).getStrategyRiskBusinessModelRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[11] += (int) Math.round(assessmentScores.get(i).getStrategyRiskReputationalRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[12] +=(int) Math.round( assessmentScores.get(i).getCybersecurityRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[13] +=(int) Math.round( assessmentScores.get(i).getInterestRateRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[14] +=(int) Math.round( assessmentScores.get(i).getAmlFinancialCrimeRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[15] +=(int) Math.round (assessmentScores.get(i).getEsgRisk()*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[16] +=(int) Math.round( assessmentScores.get(i).getConductRisk()*assessmentScores.get(i).getFactorWeight());
+			}
+
+			// Save the last AssessmentSummary
+			AssessmentSummary lastAssessmentSummary = new AssessmentSummary(
+			        assessmentScores.get(assessmentScores.size() - 1).getAuditee(),
+			        riskIndicators[0], riskIndicators[1], riskIndicators[2], riskIndicators[3],
+			        riskIndicators[4], riskIndicators[5], riskIndicators[6], riskIndicators[7],
+			        riskIndicators[8], riskIndicators[9], riskIndicators[10], riskIndicators[11],
+			        riskIndicators[12], riskIndicators[13], riskIndicators[14], riskIndicators[15],
+			        riskIndicators[16]
+			);
+			assessmentSummaryRepo.save(lastAssessmentSummary);		
 			
 		};
 	}

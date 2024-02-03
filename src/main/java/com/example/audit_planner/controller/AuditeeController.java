@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.audit_planner.model.Auditee;
 import com.example.audit_planner.model.AuditeeRepository;
+import com.example.audit_planner.model.Auditor;
+import com.example.audit_planner.model.AuditorRepository;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -28,6 +30,9 @@ public class AuditeeController {
 	
 	@Autowired
 	AuditeeRepository auditeeRepo;
+	
+	@Autowired
+	AuditorRepository auditorRepo;
 	
 	@GetMapping("/auditees")
 	public ResponseEntity<List<Auditee>> getAllAuditees(@RequestParam(required=false) String unit){
@@ -57,10 +62,14 @@ public class AuditeeController {
 		}
 	}
 	
+	
+	//Note that dummyAuditorId is used for the RequestBody argument and then used to determine auditor index id for the auditee instantiation
 	@PostMapping("/auditees")
 	public ResponseEntity<Auditee> createAuditee(@RequestBody Auditee auditee){
 		try {
-			Auditee _auditee = auditeeRepo.save(new Auditee(auditee.getUnit(),auditee.getSector()));
+			List<Auditor>auditors = auditorRepo.findAll();
+			
+			Auditee _auditee = auditeeRepo.save(new Auditee(auditee.getUnit(),auditee.getSector(),auditors.get(auditee.getDummyAuditorId()-1)));
 			return new ResponseEntity<>(_auditee,HttpStatus.CREATED);
 		}catch (Exception e) {
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);

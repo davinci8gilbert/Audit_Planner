@@ -9,6 +9,7 @@ public interface AuditeeRepository extends JpaRepository<Auditee, Long> {
 
 	List<Auditee> findByUnit(String unit);
 	List<Auditee> findBySector(String sector);
+	List<Auditee> findByAuditorId(long auditorId);
 	Auditee findById(long id);
 	
 }
