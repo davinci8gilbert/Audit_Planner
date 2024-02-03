@@ -8,5 +8,6 @@ public interface AssessmentSummaryRepository extends JpaRepository<AssessmentSum
 
 	List<AssessmentSummary> findByAuditeeId(long auditeeId);
 	AssessmentSummary findById(long id);
+	List<AssessmentSummary> findAll();
 	
 }

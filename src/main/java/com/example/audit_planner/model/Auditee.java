@@ -53,6 +53,10 @@ public class Auditee {
 	@JoinColumn(name="auditor_id",nullable=false)
 	private Auditor auditor;
 	
+	@OneToOne(mappedBy="auditee",cascade=CascadeType.ALL)
+	@JsonIgnore
+	private ResourceAllocation resourceAllocation;
+	
 	
 	public Auditee() {
 		

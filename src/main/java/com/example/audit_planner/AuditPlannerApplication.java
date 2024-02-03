@@ -21,6 +21,8 @@ import com.example.audit_planner.model.Auditor;
 import com.example.audit_planner.model.AuditorRepository;
 import com.example.audit_planner.model.PreviousAudit;
 import com.example.audit_planner.model.PreviousAuditRepository;
+import com.example.audit_planner.model.ResourceAllocation;
+import com.example.audit_planner.model.ResourceAllocationRepository;
 
 @SpringBootApplication
 public class AuditPlannerApplication {
@@ -31,7 +33,8 @@ public class AuditPlannerApplication {
 	
 	@Bean
 	ApplicationRunner init(AuditorRepository auditorRepo, AuditeeRepository auditeeRepo,  PreviousAuditRepository previousAuditRepo, 
-			AssessmentScoreRepository assessmentScoreRepo,AssessmentSummaryRepository assessmentSummaryRepo) {
+			AssessmentScoreRepository assessmentScoreRepo,AssessmentSummaryRepository assessmentSummaryRepo,
+			ResourceAllocationRepository resourceAllocationRepo) {
 		return args ->{
 			
 			//instantiation of auditors
@@ -228,8 +231,35 @@ public class AuditPlannerApplication {
 			        riskIndicators[16]
 			);
 			assessmentSummaryRepo.save(lastAssessmentSummary);		
+
+			//---------------------------------------------------------------------------------------------------------------
+			
+			//Resource Allocation instantiation for the auditable units
+			//for now, it is based on those auditees from the AssessmentSummary Table with Medium or High Risk ratings
+			//there should be another column that would specifically indicate whether the auditee is auditable or not
+			//to accommodate overridess
+			
+			List<AssessmentSummary>assessmentSummaries = assessmentSummaryRepo.findAll();
+			List<AssessmentSummary>auditableUnits = new ArrayList<>();
+			
+			for(int i =0; i<assessmentSummaries.size();i++) {
+				if(assessmentSummaries.get(i).getBenchmarkResults()=="Medium Risk"||assessmentSummaries.get(i).getBenchmarkResults()=="High Risk") {
+					auditableUnits.add(assessmentSummaries.get(i));
+				}
+			}
+			
+			List<ResourceAllocation> resourceAllocations = new ArrayList<>();
+			Auditee auditee;
+			for(int i =0; i<auditableUnits.size();i++) {
+				
+				auditee=auditableUnits.get(i).getAuditee();
+				resourceAllocations.add(new ResourceAllocation(auditee));						
+				}
+			
+			resourceAllocationRepo.saveAll(resourceAllocations);
 			
 		};
+		
 	}
 
 }
