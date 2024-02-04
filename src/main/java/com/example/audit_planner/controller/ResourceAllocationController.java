@@ -28,7 +28,8 @@ public class ResourceAllocationController {
 	ResourceAllocationRepository resourceAllocationRepo;
 	
 	@GetMapping("/resourceallocations")
-	public ResponseEntity<List<ResourceAllocation>> getAllResourceAllocations(@RequestParam(required = false) Long auditeeId) {
+	public ResponseEntity<List<ResourceAllocation>> getAllResourceAllocations(@RequestParam(required = false) 
+	Long auditeeId) {
 		try {
 			List<ResourceAllocation> resourceAllocations = new ArrayList<ResourceAllocation>();
 
@@ -75,7 +76,6 @@ public class ResourceAllocationController {
 	}
 
 	//to manually update the manhours
-
 	@PutMapping("/resourceallocationsmanualadj/{id}")
 	public ResponseEntity<ResourceAllocation> updateAdjustedManhours(@PathVariable("id") long id, 
 			@RequestBody ResourceAllocation resourceAllocation) {

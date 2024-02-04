@@ -174,9 +174,8 @@ public class AuditPlannerApplication {
 			
 			//instantiation of assessmentScores
 			List<AssessmentScore> assessmentScores = assessmentScoreRepo.findAll();
-			
-
-			double[] riskIndicators = new double[17]; // Assuming there are 17 risk indicators
+						
+			double[] riskIndicators = new double[18]; // Assuming there are 17 risk indicators
 			int currentAuditeeId = -1; // Start with an invalid ID
 
 			for (int i = 0; i < assessmentScores.size(); i++) {
@@ -184,14 +183,14 @@ public class AuditPlannerApplication {
 
 			    if (auditeeId != currentAuditeeId) {
 			        if (currentAuditeeId != -1) {
-			        	
+			        	//to post the weighted scores into the Assessment_Summary table
 			            AssessmentSummary assessmentSummary = new AssessmentSummary(
 			                    assessmentScores.get(i - 1).getAuditee(),
 			                    riskIndicators[0], riskIndicators[1], riskIndicators[2], riskIndicators[3],
 			                    riskIndicators[4], riskIndicators[5], riskIndicators[6], riskIndicators[7],
 			                    riskIndicators[8], riskIndicators[9], riskIndicators[10], riskIndicators[11],
 			                    riskIndicators[12], riskIndicators[13], riskIndicators[14], riskIndicators[15],
-			                    riskIndicators[16]
+			                    riskIndicators[16],riskIndicators[17]
 			            );
 			            assessmentSummaryRepo.save(assessmentSummary);
 
@@ -202,23 +201,43 @@ public class AuditPlannerApplication {
 			        currentAuditeeId = auditeeId;
 			    }
 
-			    riskIndicators[0] +=(int) Math.round((assessmentScores.get(i).getCreditRiskLoanPortfolioRisk())*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[1] += (int) Math.round(assessmentScores.get(i).getCreditRiskCounterpartyCreditRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[2] += (int) Math.round(assessmentScores.get(i).getMarketRiskInterestRateRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[3] += (int) Math.round(assessmentScores.get(i).getMaketRiskCommodityPriceRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[4] += (int) Math.round(assessmentScores.get(i).getOperationalRiskFraudMisconductRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[5] += (int) Math.round(assessmentScores.get(i).getOperationalRiskBusinessContinuityRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[6] += (int) Math.round(assessmentScores.get(i).getLiquidityRiskFundingLiquidityRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[7] +=(int) Math.round (assessmentScores.get(i).getLiquidityRiskContingencyFundingRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[8] += (int) Math.round(assessmentScores.get(i).getComplianceRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[9] += (int) Math.round(assessmentScores.get(i).getLegalRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[10] +=(int) Math.round (assessmentScores.get(i).getStrategyRiskBusinessModelRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[11] += (int) Math.round(assessmentScores.get(i).getStrategyRiskReputationalRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[12] +=(int) Math.round( assessmentScores.get(i).getCybersecurityRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[13] +=(int) Math.round( assessmentScores.get(i).getInterestRateRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[14] +=(int) Math.round( assessmentScores.get(i).getAmlFinancialCrimeRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[15] +=(int) Math.round (assessmentScores.get(i).getEsgRisk()*assessmentScores.get(i).getFactorWeight());
-			    riskIndicators[16] +=(int) Math.round( assessmentScores.get(i).getConductRisk()*assessmentScores.get(i).getFactorWeight());
+			    //obtain the score per factor per risk and multiply with the weights
+			    riskIndicators[0] +=(int) Math.round((assessmentScores.get(i).getCreditRiskLoanPortfolioRisk())
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[1] += (int) Math.round(assessmentScores.get(i).getCreditRiskCounterpartyCreditRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[2] += (int) Math.round(assessmentScores.get(i).getMarketRiskInterestRateRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[3] += (int) Math.round(assessmentScores.get(i).getMaketRiskCommodityPriceRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[4] += (int) Math.round(assessmentScores.get(i).getOperationalRiskInternalProcessesRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[5] += (int) Math.round(assessmentScores.get(i).getOperationalRiskFraudMisconductRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[6] += (int) Math.round(assessmentScores.get(i).getOperationalRiskBusinessContinuityRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[7] += (int) Math.round(assessmentScores.get(i).getLiquidityRiskFundingLiquidityRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[8] +=(int) Math.round (assessmentScores.get(i).getLiquidityRiskContingencyFundingRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[9] += (int) Math.round(assessmentScores.get(i).getComplianceRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[10] += (int) Math.round(assessmentScores.get(i).getLegalRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[11] +=(int) Math.round (assessmentScores.get(i).getStrategyRiskBusinessModelRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[12] += (int) Math.round(assessmentScores.get(i).getStrategyRiskReputationalRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[13] +=(int) Math.round( assessmentScores.get(i).getCybersecurityRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[14] +=(int) Math.round( assessmentScores.get(i).getInterestRateRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[15] +=(int) Math.round( assessmentScores.get(i).getAmlFinancialCrimeRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[16] +=(int) Math.round (assessmentScores.get(i).getEsgRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
+			    riskIndicators[17] +=(int) Math.round( assessmentScores.get(i).getConductRisk()
+			    		*assessmentScores.get(i).getFactorWeight());
 			}
 
 			// Save the last AssessmentSummary
@@ -228,7 +247,7 @@ public class AuditPlannerApplication {
 			        riskIndicators[4], riskIndicators[5], riskIndicators[6], riskIndicators[7],
 			        riskIndicators[8], riskIndicators[9], riskIndicators[10], riskIndicators[11],
 			        riskIndicators[12], riskIndicators[13], riskIndicators[14], riskIndicators[15],
-			        riskIndicators[16]
+			        riskIndicators[16],riskIndicators[17]
 			);
 			assessmentSummaryRepo.save(lastAssessmentSummary);		
 
@@ -243,7 +262,8 @@ public class AuditPlannerApplication {
 			List<AssessmentSummary>auditableUnits = new ArrayList<>();
 			
 			for(int i =0; i<assessmentSummaries.size();i++) {
-				if(assessmentSummaries.get(i).getBenchmarkResults()=="Medium Risk"||assessmentSummaries.get(i).getBenchmarkResults()=="High Risk") {
+				if(assessmentSummaries.get(i).getBenchmarkResults()=="Medium Risk"||
+						assessmentSummaries.get(i).getBenchmarkResults()=="High Risk") {
 					auditableUnits.add(assessmentSummaries.get(i));
 				}
 			}

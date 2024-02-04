@@ -34,7 +34,8 @@ public class AssessmentScoreController {
 	AuditeeRepository auditeeRepo;
 	
 	@GetMapping("/assessmentscores")
-	public ResponseEntity<List<AssessmentScore>> getAllAssessmentScores(@RequestParam(required = false)Long auditeeId){
+	public ResponseEntity<List<AssessmentScore>> getAllAssessmentScores(@RequestParam
+			(required = false)Long auditeeId){
 		try {
 			List<AssessmentScore>assessmentScores = new ArrayList<AssessmentScore>();
 			

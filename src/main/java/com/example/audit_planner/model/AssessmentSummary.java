@@ -35,6 +35,9 @@ public class AssessmentSummary {
 	@Column(name = "market_risk_commodity_price_risk")
 	private double marketRiskCommodityPriceRisk;
 
+	@Column(name="operationalRiskInternalProcessesRisk")
+	private double operationalRiskInternalProcessesRisk;
+	
 	@Column(name = "operational_risk_fraud_misconduct_risk")
 	private double operationalRiskFraudMisconductRisk;
 
@@ -94,7 +97,7 @@ public class AssessmentSummary {
 
 	public AssessmentSummary(Auditee auditee, double creditRiskLoanPortfolioRisk,
 	        double creditRiskCounterpartyCreditRisk, double marketRiskInterestRateRisk,
-	        double marketRiskCommodityPriceRisk, double operationalRiskFraudMisconductRisk,
+	        double marketRiskCommodityPriceRisk, double operationalRiskInternalProcessesRisk,double operationalRiskFraudMisconductRisk,
 	        double operationalRiskBusinessContinuityRisk, double liquidityRiskFundingLiquidityRisk,
 	        double liquidityRiskContingencyFundingRisk, double complianceRisk, double legalRisk,
 	        double strategyRiskBusinessModelRisk, double strategyRiskReputationalRisk,
@@ -106,6 +109,7 @@ public class AssessmentSummary {
 	    this.creditRiskCounterpartyCreditRisk = creditRiskCounterpartyCreditRisk;
 	    this.marketRiskInterestRateRisk = marketRiskInterestRateRisk;
 	    this.marketRiskCommodityPriceRisk = marketRiskCommodityPriceRisk;
+	    this.operationalRiskInternalProcessesRisk=operationalRiskInternalProcessesRisk;
 	    this.operationalRiskFraudMisconductRisk = operationalRiskFraudMisconductRisk;
 	    this.operationalRiskBusinessContinuityRisk = operationalRiskBusinessContinuityRisk;
 	    this.liquidityRiskFundingLiquidityRisk = liquidityRiskFundingLiquidityRisk;
@@ -121,7 +125,7 @@ public class AssessmentSummary {
 	    this.conductRisk = conductRisk;
 
 	    this.totalScores = creditRiskLoanPortfolioRisk + creditRiskCounterpartyCreditRisk +
-	            marketRiskInterestRateRisk + marketRiskCommodityPriceRisk +
+	            marketRiskInterestRateRisk + marketRiskCommodityPriceRisk +operationalRiskInternalProcessesRisk+
 	            operationalRiskFraudMisconductRisk + operationalRiskBusinessContinuityRisk +
 	            liquidityRiskFundingLiquidityRisk + liquidityRiskContingencyFundingRisk +
 	            complianceRisk + legalRisk + strategyRiskBusinessModelRisk +
@@ -130,7 +134,7 @@ public class AssessmentSummary {
 
 	    double[] riskScores = {
 	            creditRiskLoanPortfolioRisk, creditRiskCounterpartyCreditRisk,
-	            marketRiskInterestRateRisk, marketRiskCommodityPriceRisk,
+	            marketRiskInterestRateRisk, marketRiskCommodityPriceRisk,operationalRiskInternalProcessesRisk,
 	            operationalRiskFraudMisconductRisk, operationalRiskBusinessContinuityRisk,
 	            liquidityRiskFundingLiquidityRisk, liquidityRiskContingencyFundingRisk,
 	            complianceRisk, legalRisk,
@@ -208,6 +212,15 @@ public class AssessmentSummary {
 	public double getMarketRiskCommodityPriceRisk() {
 	    return marketRiskCommodityPriceRisk;
 	}
+	
+	public double getOperationalRiskInternalProcessesRisk() {
+		return operationalRiskInternalProcessesRisk;
+	}
+
+	public void setOperationalRiskInternalProcessesRisk(double operationalRiskInternalProcessesRisk) {
+		this.operationalRiskInternalProcessesRisk = operationalRiskInternalProcessesRisk;
+	}
+
 
 	public void setMarketRiskCommodityPriceRisk(double marketRiskCommodityPriceRisk) {
 	    this.marketRiskCommodityPriceRisk = marketRiskCommodityPriceRisk;

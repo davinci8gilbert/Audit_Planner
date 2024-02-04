@@ -60,10 +60,15 @@ public class AuditorController {
 	@PostMapping("/auditors")
 	public ResponseEntity<Auditor> createAuditor(@RequestBody Auditor auditor){
 		try {
-			Auditor _auditor = auditorRepo.save(new Auditor(auditor.getTeamName(),auditor.getAuditorName(),auditor.getRole(),
-					auditor.getPassword(),auditor.getHeadcount(),auditor.getNumberOfWorkingDays(),auditor.getNumberOfDailyWorkHours(),auditor.getTotalWorkingHours(),
-					auditor.getAnnualLeaves(),auditor.getMaternityLeaves(),auditor.getAnnualPlanningActivities(),auditor.getContinuousAudit(),
-					auditor.getAdministrativeActivities(),auditor.getContingencyBudget(),auditor.getTotalAdjustment(),auditor.getAvailableHoursAudit(),
+			Auditor _auditor = auditorRepo.save(new Auditor(auditor.getTeamName(),
+					auditor.getAuditorName(),auditor.getRole(),
+					auditor.getPassword(),auditor.getHeadcount(),auditor.getNumberOfWorkingDays(),
+					auditor.getNumberOfDailyWorkHours(),
+					auditor.getTotalWorkingHours(),
+					auditor.getAnnualLeaves(),auditor.getMaternityLeaves(),auditor.getAnnualPlanningActivities(),
+					auditor.getContinuousAudit(),
+					auditor.getAdministrativeActivities(),auditor.getContingencyBudget(),auditor.getTotalAdjustment(),
+					auditor.getAvailableHoursAudit(),
 					auditor.getActualAllocatedManhours(),auditor.getExcessShort()));
 			return new ResponseEntity<>(_auditor,HttpStatus.CREATED);
 		}catch (Exception e) {

@@ -17,7 +17,6 @@ public class ResourceAllocation {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	
 	@OneToOne
 	@JoinColumn(name="auditee_id")
 	Auditee auditee;
@@ -30,8 +29,6 @@ public class ResourceAllocation {
 	
 	int dummyAuditeeId;
 	
-	
-
 	public ResourceAllocation() {
 		
 	}

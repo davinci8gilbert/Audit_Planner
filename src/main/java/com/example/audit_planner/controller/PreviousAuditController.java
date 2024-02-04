@@ -26,7 +26,8 @@ public class PreviousAuditController {
 	PreviousAuditRepository previousAuditRepo;
 	
 	@GetMapping("/previousAudits")
-	public ResponseEntity<List<PreviousAudit>>getAllPreviousAudits(@RequestParam(required=false)Long auditeeId){
+	public ResponseEntity<List<PreviousAudit>>getAllPreviousAudits(@RequestParam(required=false)
+	Long auditeeId){
 		try {
 			List<PreviousAudit> previousAudits = new ArrayList<PreviousAudit>();
 			
@@ -48,12 +49,12 @@ public class PreviousAuditController {
 	public ResponseEntity<PreviousAudit>createPreviousAudit(@RequestBody PreviousAudit previousAudit){
 		try {
 			
-			PreviousAudit _previousAudit = previousAuditRepo.save(previousAudit);
+//			PreviousAudit _previousAudit = previousAuditRepo.save(previousAudit);
 			
-//			PreviousAudit _previousAudit = previousAuditRepo.save(new PreviousAudit(previousAudit.getAuditee(),previousAudit.getAuditPlanRiskRating(),
-//					previousAudit.getDateOfAudit(),previousAudit.getAuditRating(),previousAudit.getNumberHighRiskIssues(),previousAudit.getNumberMediumRiskIssues(),
-//					previousAudit.getNumberLowRiskIssues(),previousAudit.getNumberHighRiskIncidents(),previousAudit.getNumberMediumRiskIncidents(),
-//					previousAudit.getNumberLowRiskIncidents()));
+			PreviousAudit _previousAudit = previousAuditRepo.save(new PreviousAudit(previousAudit.getAuditee(),previousAudit.getAuditPlanRiskRating(),
+					previousAudit.getDateOfAudit(),previousAudit.getAuditRating(),previousAudit.getNumberHighRiskIssues(),previousAudit.getNumberMediumRiskIssues(),
+					previousAudit.getNumberLowRiskIssues(),previousAudit.getNumberHighRiskIncidents(),previousAudit.getNumberMediumRiskIncidents(),
+					previousAudit.getNumberLowRiskIncidents()));
 			
 			return new ResponseEntity<>(_previousAudit,HttpStatus.CREATED);
 		}catch(Exception e) {

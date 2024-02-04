@@ -69,7 +69,8 @@ public class AuditeeController {
 		try {
 			List<Auditor>auditors = auditorRepo.findAll();
 			
-			Auditee _auditee = auditeeRepo.save(new Auditee(auditee.getUnit(),auditee.getSector(),auditors.get(auditee.getDummyAuditorId()-1)));
+			Auditee _auditee = auditeeRepo.save(new Auditee(auditee.getUnit(),auditee.getSector(),
+					auditors.get(auditee.getDummyAuditorId()-1)));
 			return new ResponseEntity<>(_auditee,HttpStatus.CREATED);
 		}catch (Exception e) {
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
