@@ -1,6 +1,8 @@
 package com.example.audit_planner.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -143,7 +145,74 @@ public class AssessmentSummary {
 	            esgRisk, conductRisk
 	    };
 
-	    int count = 0;
+	    double count = 0;
+	    for (double riskScore : riskScores) {
+	        if (riskScore != 0) {
+	            count++;
+	        }
+	    }
+	    this.numberRisksRated = count;
+
+	    if (totalScores < numberRisksRated * 3) {
+	        this.benchmarkResults = "Low Risk";
+	    } else if (totalScores < numberRisksRated * 7) {
+	        this.benchmarkResults = "Medium Risk";
+	    } else if (totalScores < numberRisksRated * 10) {
+	        this.benchmarkResults = "High Risk";
+	    } else {
+	        this.benchmarkResults = "Very High Risk";
+	    }
+	}
+	//without auditee. auditee is supplied at the front end
+	public AssessmentSummary(double creditRiskLoanPortfolioRisk,
+	        double creditRiskCounterpartyCreditRisk, double marketRiskInterestRateRisk,
+	        double marketRiskCommodityPriceRisk, double operationalRiskInternalProcessesRisk,double operationalRiskFraudMisconductRisk,
+	        double operationalRiskBusinessContinuityRisk, double liquidityRiskFundingLiquidityRisk,
+	        double liquidityRiskContingencyFundingRisk, double complianceRisk, double legalRisk,
+	        double strategyRiskBusinessModelRisk, double strategyRiskReputationalRisk,
+	        double cyberSecurityRisk, double interestRateRisk, double amlFinancialCrimeRisk,
+	        double esgRisk, double conductRisk) {
+	    
+	    
+	    this.creditRiskLoanPortfolioRisk = creditRiskLoanPortfolioRisk;
+	    this.creditRiskCounterpartyCreditRisk = creditRiskCounterpartyCreditRisk;
+	    this.marketRiskInterestRateRisk = marketRiskInterestRateRisk;
+	    this.marketRiskCommodityPriceRisk = marketRiskCommodityPriceRisk;
+	    this.operationalRiskInternalProcessesRisk=operationalRiskInternalProcessesRisk;
+	    this.operationalRiskFraudMisconductRisk = operationalRiskFraudMisconductRisk;
+	    this.operationalRiskBusinessContinuityRisk = operationalRiskBusinessContinuityRisk;
+	    this.liquidityRiskFundingLiquidityRisk = liquidityRiskFundingLiquidityRisk;
+	    this.liquidityRiskContingencyFundingRisk = liquidityRiskContingencyFundingRisk;
+	    this.complianceRisk = complianceRisk;
+	    this.legalRisk = legalRisk;
+	    this.strategyRiskBusinessModelRisk = strategyRiskBusinessModelRisk;
+	    this.strategyRiskReputationalRisk = strategyRiskReputationalRisk;
+	    this.cyberSecurityRisk = cyberSecurityRisk;
+	    this.interestRateRisk = interestRateRisk;
+	    this.amlFinancialCrimeRisk = amlFinancialCrimeRisk;
+	    this.esgRisk = esgRisk;
+	    this.conductRisk = conductRisk;
+
+	    this.totalScores = creditRiskLoanPortfolioRisk + creditRiskCounterpartyCreditRisk +
+	            marketRiskInterestRateRisk + marketRiskCommodityPriceRisk +operationalRiskInternalProcessesRisk+
+	            operationalRiskFraudMisconductRisk + operationalRiskBusinessContinuityRisk +
+	            liquidityRiskFundingLiquidityRisk + liquidityRiskContingencyFundingRisk +
+	            complianceRisk + legalRisk + strategyRiskBusinessModelRisk +
+	            strategyRiskReputationalRisk + cyberSecurityRisk + interestRateRisk +
+	            amlFinancialCrimeRisk + esgRisk + conductRisk;
+
+	    double[] riskScores = {
+	            creditRiskLoanPortfolioRisk, creditRiskCounterpartyCreditRisk,
+	            marketRiskInterestRateRisk, marketRiskCommodityPriceRisk,operationalRiskInternalProcessesRisk,
+	            operationalRiskFraudMisconductRisk, operationalRiskBusinessContinuityRisk,
+	            liquidityRiskFundingLiquidityRisk, liquidityRiskContingencyFundingRisk,
+	            complianceRisk, legalRisk,
+	            strategyRiskBusinessModelRisk, strategyRiskReputationalRisk,
+	            cyberSecurityRisk, interestRateRisk, amlFinancialCrimeRisk,
+	            esgRisk, conductRisk
+	    };
+
+	    double count = 0;
 	    for (double riskScore : riskScores) {
 	        if (riskScore != 0) {
 	            count++;
@@ -340,10 +409,6 @@ public class AssessmentSummary {
 
 	public double getNumberRisksRated() {
 	    return numberRisksRated;
-	}
-
-	public void setNumberRisksRated(int numberRisksRated) {
-	    this.numberRisksRated = numberRisksRated;
 	}
 
 	public String getBenchmarkResults() {
