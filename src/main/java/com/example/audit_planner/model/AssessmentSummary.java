@@ -96,6 +96,10 @@ public class AssessmentSummary {
 	public AssessmentSummary() {
 	    // Default constructor
 	}
+	
+	public AssessmentSummary(Auditee auditee) {
+		this.auditee = auditee;
+	}
 
 	public AssessmentSummary(Auditee auditee, double creditRiskLoanPortfolioRisk,
 	        double creditRiskCounterpartyCreditRisk, double marketRiskInterestRateRisk,

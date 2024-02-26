@@ -61,7 +61,7 @@ public class AuditorController {
 	public ResponseEntity<Auditor> createAuditor(@RequestBody Auditor auditor){
 		try {
 			Auditor _auditor = auditorRepo.save(new Auditor(auditor.getTeamName(),
-					auditor.getAuditorName(),auditor.getRole(),
+					auditor.getAuditorName(),auditor.getRole(),auditor.getUserName(),
 					auditor.getPassword(),auditor.getHeadcount(),auditor.getNumberOfWorkingDays(),
 					auditor.getNumberOfDailyWorkHours(),
 					auditor.getTotalWorkingHours(),

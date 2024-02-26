@@ -31,7 +31,7 @@ public class LoginController {
 
 		
 		try {
-			Auditor auditor = auditorRepo.findById(loginRequest.getAuditorId());
+			Auditor auditor = auditorRepo.findByUserName(loginRequest.getUserName());
 			if (auditor != null) {
 				String password = auditor.getPassword();
 				if (password.equals(loginRequest.getPassword())) {

@@ -31,6 +31,9 @@ public class Auditor {
 	@Column(name="role")
 	private String role;
 	
+	@Column(name="userName")
+	private String userName;
+	
 	@Column(name="password")
 	private String password;
 	
@@ -85,7 +88,7 @@ public class Auditor {
 		
 	}
 	
-	public Auditor(String teamName,String auditorName,String role, String password, int headcount,double numberOfWorkingDays,
+	public Auditor(String teamName,String auditorName,String role, String userName,String password, int headcount,double numberOfWorkingDays,
 			double numberOfDailyWorkHours,double totalWorkingHours, double annualLeaves, double maternityLeaves,
 			double annualPlanningActivities, double continuousAudit,double administrativeActivities,double contingencyBudget,
 			double totalAdjustment,double availableHoursAudit,double actualAllocatedManhours,double excessShort) {
@@ -93,6 +96,7 @@ public class Auditor {
 		this.teamName = teamName;
 		this.auditorName=auditorName;
 		this.role=role;
+		this.userName=userName;
 		this.password=password;
 		this.headcount=headcount;
 		this.numberOfWorkingDays=numberOfWorkingDays;
@@ -110,10 +114,12 @@ public class Auditor {
 		this.excessShort=excessShort;
 	}
 	
-	public Auditor(String teamName, String auditorName, String role) {
+	public Auditor(String teamName, String auditorName, String role, String userName, String password) {
 		this.teamName = teamName;
 		this.auditorName=auditorName;
 		this.role=role;
+		this.userName=userName;
+		this.password=password;
 	}
 	
 	public long getId() {
@@ -140,6 +146,15 @@ public class Auditor {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	public String getPassword() {
 		return password;
 	}

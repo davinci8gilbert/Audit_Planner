@@ -7,5 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface AuditorRepository extends JpaRepository<Auditor, Long> {
 
 	List<Auditor> findByTeamName(String teamName);
+	Auditor findByUserName(String userName);
 	Auditor findById(long id);
 }

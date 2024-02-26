@@ -2,24 +2,30 @@ package com.example.audit_planner.model;
 
 public class AuditorLoginRequest {
 
-	private int auditorId;
+	private String userName;
 
 	private String password;
 	
 		
-	public AuditorLoginRequest(int auditorId, String password) {
+	public AuditorLoginRequest(String userName, String password) {
 		
-		this.auditorId = auditorId;
+		this.userName = userName;
 		this.password = password;
 	}
 
-	public int getAuditorId() {
-		return auditorId;
+	
+
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setAuditorId(int auditorId) {
-		this.auditorId = auditorId;
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
+
+
 
 	public String getPassword() {
 		return password;
