@@ -122,6 +122,12 @@ public class Auditor {
 		this.password=password;
 	}
 	
+		
+	public Auditor(double actualAllocatedManhours, double excessShort) {
+		this.actualAllocatedManhours = actualAllocatedManhours;
+		this.excessShort = excessShort;
+	}
+
 	public long getId() {
 		return id;
 	}

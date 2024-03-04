@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -39,10 +40,10 @@ public class AuditPlannerApplication {
 			
 			//instantiation of auditors
 			List<Auditor>auditors = new ArrayList<>();
-			auditors.add(new Auditor("Operations","Clara","Manager","claramanager","manager123"));
-			auditors.add(new Auditor("Credit","Farhana","Manager","farhanamanager","manager123"));
+			auditors.add(new Auditor("Operations","Clara","Manager","claramanager","manager123",4,230,8,7360,480,0,200,300,100,300,1380,5980,0,5980));
+			auditors.add(new Auditor("Credit","Farhana","Manager","farhanamanager","manager123",5,230,8,9200,600,0,200,350,125,350,1625,7575,0,7575));
 			auditors.add(new Auditor("Technology","Sunny","Manager","sunnymanager","manager123"));
-			auditors.add(new Auditor("Treasury","Chee Wan","Manager","cheewanmanager","manager123"));
+			auditors.add(new Auditor("Treasury","Chee Wan","Manager","cheewanmanager","manager123",3,230,8,5520,360,0,200,250,75,275,1160,4360,0,4360));
 			auditors.add(new Auditor("Head of Audit","Gilbert Gule","Chief","gilbertchief","chief123"));
 			
 			auditorRepo.saveAll(auditors);
@@ -184,43 +185,109 @@ public class AuditPlannerApplication {
 //			auditees.get(7).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 3, 0, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
 //
 //			auditeeRepo.saveAll(auditees);
-			
-//			for (int i = 8; i< auditees.size();i++) {
-//				
-//				auditees.get(i).addAssessmentScore(new AssessmentScore("Change", 0.20, 2, 3, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//				auditees.get(i).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//				auditees.get(i).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 1, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//				auditees.get(i).addAssessmentScore(new AssessmentScore("Financial", 0.10, 1, 2, 3, 0, 7, 8, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//				auditees.get(i).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 0, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//				auditees.get(i).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 2, 3, 1, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//				auditees.get(i).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 3, 2, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//				auditees.get(i).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//				auditees.get(i).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 3, 0, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//				
-//				auditeeRepo.saveAll(auditees);
-//			}
-//		
-//
-//			auditeeRepo.findAll().forEach(System.out::println);
-			
-			
-			//alternative to only put in the factor name and factor weight:
-				for (int i = 0; i< auditees.size();i++) {
+			//medium
+			for (int i = 0; i< 15;i++) {
 				
-				auditees.get(i).addAssessmentScore(new AssessmentScore("Change", 0.20));
-				auditees.get(i).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15));
-				auditees.get(i).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10));
-				auditees.get(i).addAssessmentScore(new AssessmentScore("Financial", 0.10));
-				auditees.get(i).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10));
-				auditees.get(i).addAssessmentScore(new AssessmentScore("Complexity", 0.10));
-				auditees.get(i).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10));
-				auditees.get(i).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10));
-				auditees.get(i).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Change", 0.20, 2, 3, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 1, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Financial", 0.10, 1, 2, 3, 0, 7, 8, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 0, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 2, 3, 1, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 3, 2, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 3, 0, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
 				
 				auditeeRepo.saveAll(auditees);
 			}
-				auditeeRepo.findAll().forEach(System.out::println);
+			//low risk
+			for (int i = 15; i< 20;i++) {
+				
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Change", 0.20, 0, 1, 2, 3, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 1, 0, 2, 3, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 2, 3, 0, 1, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Financial", 0.10, 3, 0, 1, 2, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 0, 1, 2, 3, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 1, 2, 3, 0, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 2, 3, 0, 1, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 3, 0, 1, 2, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 0, 1, 2, 3, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
 			
+				auditeeRepo.saveAll(auditees);
+			}
+					
+			//high
+			for (int i = 20; i< 30;i++) {
+				
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Change", 0.20, 8, 9, 10, 10, 10, 10, 8, 8, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 8, 8, 8, 9, 10, 8, 9, 10, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 8, 9, 10, 8, 9, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Financial", 0.10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10, 8, 9, 10));
+				
+				auditeeRepo.saveAll(auditees);
+			}
+			
+			//medium
+			for (int i = 30; i< 38;i++) {
+				
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Change", 0.20, 2, 3, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 1, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Financial", 0.10, 1, 2, 3, 0, 7, 8, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 0, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 2, 3, 1, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 3, 2, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 3, 0, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
+				
+				auditeeRepo.saveAll(auditees);
+			}
+			
+			//low
+			for (int i = 38; i< 41;i++) {
+				
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Change", 0.20, 0, 1, 2, 3, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 1, 0, 2, 3, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 2, 3, 0, 1, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Financial", 0.10, 3, 0, 1, 2, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 0, 1, 2, 3, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 1, 2, 3, 0, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 2, 3, 0, 1, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 3, 0, 1, 2, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+				auditees.get(i).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 0, 1, 2, 3, 3, 2, 1, 0, 2, 3, 3, 3, 3, 3, 3, 1, 3, 2));
+
+				
+				auditeeRepo.saveAll(auditees);
+			}
+			
+			
+		
+
+			auditeeRepo.findAll().forEach(System.out::println);
+			
+			
+			//alternative to only put in the factor name and factor weight:
+//				for (int i = 0; i< auditees.size();i++) {
+//				
+//				auditees.get(i).addAssessmentScore(new AssessmentScore("Change", 0.20));
+//				auditees.get(i).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15));
+//				auditees.get(i).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10));
+//				auditees.get(i).addAssessmentScore(new AssessmentScore("Financial", 0.10));
+//				auditees.get(i).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10));
+//				auditees.get(i).addAssessmentScore(new AssessmentScore("Complexity", 0.10));
+//				auditees.get(i).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10));
+//				auditees.get(i).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10));
+//				auditees.get(i).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05));
+//				
+//				auditeeRepo.saveAll(auditees);
+//			}
+//				auditeeRepo.findAll().forEach(System.out::println);
+//			
 			
 			//---------------------------------------------------------------------------------------------------------
 			
@@ -341,25 +408,25 @@ public class AuditPlannerApplication {
 			//there should be another column that would specifically indicate whether the auditee is auditable or not
 			//to accommodate overridess
 			
-			List<AssessmentSummary>assessmentSummaries = assessmentSummaryRepo.findAll();
-			List<AssessmentSummary>auditableUnits = new ArrayList<>();
-			
-			for(int i =0; i<assessmentSummaries.size();i++) {
-				if(assessmentSummaries.get(i).getBenchmarkResults()=="Medium Risk"||
-						assessmentSummaries.get(i).getBenchmarkResults()=="High Risk") {
-					auditableUnits.add(assessmentSummaries.get(i));
-				}
-			}
-			
-			List<ResourceAllocation> resourceAllocations = new ArrayList<>();
-			Auditee auditee;
-			for(int i =0; i<auditableUnits.size();i++) {
-				
-				auditee=auditableUnits.get(i).getAuditee();
-				resourceAllocations.add(new ResourceAllocation(auditee));						
-				}
-			
-			resourceAllocationRepo.saveAll(resourceAllocations);
+//			List<AssessmentSummary>assessmentSummaries = assessmentSummaryRepo.findAll();
+//			List<AssessmentSummary>auditableUnits = new ArrayList<>();
+//			
+//			for(int i =0; i<assessmentSummaries.size();i++) {
+//				if(assessmentSummaries.get(i).getBenchmarkResults()=="Medium Risk"||
+//						assessmentSummaries.get(i).getBenchmarkResults()=="High Risk") {
+//					auditableUnits.add(assessmentSummaries.get(i));
+//				}
+//			}
+//			
+//			List<ResourceAllocation> resourceAllocations = new ArrayList<>();
+//			Auditee auditee;
+//			for(int i =0; i<auditableUnits.size();i++) {
+//				
+//				auditee=auditableUnits.get(i).getAuditee();
+//				resourceAllocations.add(new ResourceAllocation(auditee));						
+//				}
+//			
+//			resourceAllocationRepo.saveAll(resourceAllocations);
 			
 		};
 		

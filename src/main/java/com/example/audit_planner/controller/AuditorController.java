@@ -105,6 +105,20 @@ public class AuditorController {
 		}
 	}
 	
+	@PutMapping("/auditorsadjustedmanhours/{id}")
+	public ResponseEntity<Auditor> updateAuditor2(@PathVariable("id")long id, @RequestBody Auditor auditor){
+		Auditor auditorData = auditorRepo.findById(id);
+		if(auditorData == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			auditorData.setActualAllocatedManhours(auditor.getActualAllocatedManhours());
+			auditorData.setExcessShort(auditor.getExcessShort());
+				
+			return new ResponseEntity<>(auditorRepo.save(auditorData),HttpStatus.OK);
+		}
+	}
+	
+	
 	@DeleteMapping("/auditors")
 	public ResponseEntity<HttpStatus> deleteAllAuditors(){
 		try {

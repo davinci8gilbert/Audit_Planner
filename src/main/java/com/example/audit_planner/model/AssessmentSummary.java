@@ -237,7 +237,11 @@ public class AssessmentSummary {
 
 	
 	
-	
+	public AssessmentSummary(Auditee auditee, String benchmarkResults) {
+		this.auditee = auditee;
+		this.benchmarkResults = benchmarkResults;
+	}
+
 	public long getId() {
 		return id;
 	}

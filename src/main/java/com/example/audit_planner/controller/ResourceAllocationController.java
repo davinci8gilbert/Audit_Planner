@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.audit_planner.model.Auditor;
 import com.example.audit_planner.model.ResourceAllocation;
 import com.example.audit_planner.model.ResourceAllocationRepository;
 
@@ -59,6 +60,18 @@ public class ResourceAllocationController {
 		}
 	}
 	
+	@PostMapping("/resourceallocations")
+	public ResponseEntity<?> createResourceAllocation(@RequestBody ResourceAllocation resourceAllocation){
+		try {
+			ResourceAllocation _resourceAllocation = resourceAllocationRepo.save(new ResourceAllocation
+					(resourceAllocation.getAuditee(),resourceAllocation.getBenchmarkResult(),resourceAllocation.getAuditStatus()));
+			
+			return new ResponseEntity<>(_resourceAllocation,HttpStatus.CREATED);
+		}catch (Exception e) {
+//			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>("Failed to create resource allocation: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	//update the equal allocation. at the front-end a loop can be generated to update only the applicable auditees
 	@PutMapping("/resourceallocations/{id}")
@@ -84,6 +97,42 @@ public class ResourceAllocationController {
 
 		if (_resourceAllocation !=null) {
 			_resourceAllocation.setAdjustedManhours(resourceAllocation.getAdjustedManhours());
+			return new ResponseEntity<>(resourceAllocationRepo.save(_resourceAllocation), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+//	input of both allocated manhours and adjusted manhours
+	@PutMapping("/resourceallocmanhours/{id}")
+	public ResponseEntity<ResourceAllocation> updateAdjustedAllocManhours(@PathVariable("id") long id, 
+			@RequestBody ResourceAllocation resourceAllocation) {
+		
+		ResourceAllocation _resourceAllocation = resourceAllocationRepo.findById(id);
+
+		if (_resourceAllocation !=null) {
+			_resourceAllocation.setEqualAllocation(resourceAllocation.getEqualAllocation());
+			_resourceAllocation.setAdjustedManhours(resourceAllocation.getAdjustedManhours());
+			_resourceAllocation.setAuditStatus(resourceAllocation.getAuditStatus());
+			_resourceAllocation.setManhourAdjustment(resourceAllocation.getManhourAdjustment());
+			return new ResponseEntity<>(resourceAllocationRepo.save(_resourceAllocation), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@PutMapping("/resourceallocmanhoursreason/{id}")
+	public ResponseEntity<ResourceAllocation> updateAdjustedAllocManhoursReason(@PathVariable("id") long id, 
+			@RequestBody ResourceAllocation resourceAllocation) {
+		
+		ResourceAllocation _resourceAllocation = resourceAllocationRepo.findById(id);
+
+		if (_resourceAllocation !=null) {
+			_resourceAllocation.setEqualAllocation(resourceAllocation.getEqualAllocation());
+			_resourceAllocation.setAdjustedManhours(resourceAllocation.getAdjustedManhours());
+			_resourceAllocation.setAuditStatus(resourceAllocation.getAuditStatus());
+			_resourceAllocation.setManhourAdjustment(resourceAllocation.getManhourAdjustment());
+			_resourceAllocation.setOverrideReason(resourceAllocation.getOverrideReason());
 			return new ResponseEntity<>(resourceAllocationRepo.save(_resourceAllocation), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

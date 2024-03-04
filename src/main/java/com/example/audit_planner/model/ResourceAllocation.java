@@ -27,6 +27,18 @@ public class ResourceAllocation {
 	@Column(name="adjustedManhours")
 	double adjustedManhours;
 	
+	@Column(name="benchmarkResult")
+	String benchmarkResult;
+	
+	@Column (name="auditStatus")
+	String auditStatus;
+	
+	@Column (name="manhourAdjustment")
+	double manhourAdjustment;
+	
+	@Column (name="overrideReason")
+	String overrideReason;
+	
 	int dummyAuditeeId;
 	
 	public ResourceAllocation() {
@@ -56,6 +68,46 @@ public class ResourceAllocation {
 
 	public ResourceAllocation(Auditee auditee) {
 		this.auditee = auditee;
+	}
+	
+	public ResourceAllocation(Auditee auditee, String benchmarkResult) {
+		super();
+		this.auditee = auditee;
+		this.benchmarkResult = benchmarkResult;
+	}
+	
+	
+	public ResourceAllocation(Auditee auditee, String benchmarkResult, String auditStatus) {
+		super();
+		this.auditee = auditee;
+		this.benchmarkResult = benchmarkResult;
+		this.auditStatus = auditStatus;
+	}
+
+	public ResourceAllocation(double equalAllocation, double adjustedManhours, double manhourAdjustment) {
+		this.equalAllocation = equalAllocation;
+		this.adjustedManhours = adjustedManhours;
+		this.manhourAdjustment = manhourAdjustment;
+	}
+	
+	public ResourceAllocation(double equalAllocation, double adjustedManhours, String auditStatus,
+			double manhourAdjustment) {
+		super(); 
+		this.equalAllocation = equalAllocation;
+		this.adjustedManhours = adjustedManhours;
+		this.auditStatus = auditStatus;
+		this.manhourAdjustment = manhourAdjustment;
+		
+	}
+
+	public ResourceAllocation(double equalAllocation, double adjustedManhours, String auditStatus,
+			double manhourAdjustment, String overrideReason) {
+		super(); 
+		this.equalAllocation = equalAllocation;
+		this.adjustedManhours = adjustedManhours;
+		this.auditStatus = auditStatus;
+		this.manhourAdjustment = manhourAdjustment;
+		this.overrideReason = overrideReason;
 	}
 
 	public long getId() {
@@ -97,6 +149,39 @@ public class ResourceAllocation {
 	public void setDummyAuditeeId(int dummyAuditeeId) {
 		this.dummyAuditeeId = dummyAuditeeId;
 	}
+
+	public String getBenchmarkResult() {
+		return benchmarkResult;
+	}
+
+	public void setBenchmarkResult(String benchmarkResult) {
+		this.benchmarkResult = benchmarkResult;
+	}
+
+	public String getAuditStatus() {
+		return auditStatus;
+	}
+
+	public void setAuditStatus(String auditStatus) {
+		this.auditStatus = auditStatus;
+	}
+
+	public double getManhourAdjustment() {
+		return manhourAdjustment;
+	}
+
+	public void setManhourAdjustment(double manhourAdjustment) {
+		this.manhourAdjustment = manhourAdjustment;
+	}
+
+	public String getOverrideReason() {
+		return overrideReason;
+	}
+
+	public void setOverrideReason(String overrideReason) {
+		this.overrideReason = overrideReason;
+	}
+	
 	
 	
 }
