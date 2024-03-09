@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.audit_planner.model.PreviousAudit;
 import com.example.audit_planner.model.PreviousAuditRepository;
 
-@CrossOrigin(origins="htpp://localhost:8081")
+@CrossOrigin(origins="http://localhost:8081")
 @RestController
 @RequestMapping("/api")
 public class PreviousAuditController {

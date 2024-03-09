@@ -74,6 +74,20 @@ public class PreviousAudit {
 		this.numberLowRiskIncidents=numberLowRiskIncidents;
 	}
 	
+	public PreviousAudit(String auditPlanRiskRating,Date date,String auditRating,int numberHighRiskIssues,
+			int numberMediumRiskIssues,int numberLowRiskIssues, int numberHighRiskIncidents,int numberMediumRiskIncidents,
+			int numberLowRiskIncidents) {
+		this.auditPlanRiskRating=auditPlanRiskRating;
+		this.dateOfAudit=date;
+		this.auditRating=auditRating;
+		this.numberHighRiskIssues=numberHighRiskIssues;
+		this.numberMediumRiskIssues=numberMediumRiskIssues;
+		this.numberLowRiskIssues=numberLowRiskIssues;
+		this.numberHighRiskIncidents=numberHighRiskIncidents;
+		this.numberMediumRiskIncidents=numberMediumRiskIncidents;
+		this.numberLowRiskIncidents=numberLowRiskIncidents;
+	}
+	
 	
 			
 	public long getId() {

@@ -139,4 +139,20 @@ public class ResourceAllocationController {
 		}
 	}
 	
+	@PutMapping("/resourcetable/{id}")
+	public ResponseEntity<ResourceAllocation> updateResourceTable(@PathVariable("id") long id, 
+			@RequestBody ResourceAllocation resourceAllocation) {
+		
+		ResourceAllocation _resourceAllocation = resourceAllocationRepo.findById(id);
+
+		if (_resourceAllocation !=null) {
+			_resourceAllocation.setAuditee(resourceAllocation.getAuditee());
+			_resourceAllocation.setBenchmarkResult(resourceAllocation.getBenchmarkResult());
+			_resourceAllocation.setAuditStatus(resourceAllocation.getAuditStatus());
+			return new ResponseEntity<>(resourceAllocationRepo.save(_resourceAllocation), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 }

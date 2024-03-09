@@ -40,10 +40,10 @@ public class AuditPlannerApplication {
 			
 			//instantiation of auditors
 			List<Auditor>auditors = new ArrayList<>();
-			auditors.add(new Auditor("Operations","Clara","Manager","claramanager","manager123",4,230,8,7360,480,0,200,300,100,300,1380,5980,0,5980));
-			auditors.add(new Auditor("Credit","Farhana","Manager","farhanamanager","manager123",5,230,8,9200,600,0,200,350,125,350,1625,7575,0,7575));
+			auditors.add(new Auditor("Operations","Clara","Manager","claramanager","manager123",4,230,8,7360,480,0,200,300,100,300,1380,5980,0,0));
+			auditors.add(new Auditor("Credit","Farhana","Manager","farhanamanager","manager123",5,230,8,9200,600,0,200,350,125,350,1625,7575,0,0));
 			auditors.add(new Auditor("Technology","Sunny","Manager","sunnymanager","manager123"));
-			auditors.add(new Auditor("Treasury","Chee Wan","Manager","cheewanmanager","manager123",3,230,8,5520,360,0,200,250,75,275,1160,4360,0,4360));
+			auditors.add(new Auditor("Treasury","Chee Wan","Manager","cheewanmanager","manager123",3,230,8,5520,360,0,200,250,75,275,1160,4360,0,0));
 			auditors.add(new Auditor("Head of Audit","Gilbert Gule","Chief","gilbertchief","chief123"));
 			
 			auditorRepo.saveAll(auditors);
@@ -97,94 +97,11 @@ public class AuditPlannerApplication {
 			auditees.add(new Auditee("Technology Risk Management","Technology",auditors.get(3-1)));
 			auditees.add(new Auditee("IT Security Defense","Technology",auditors.get(3-1)));
 			auditees.add(new Auditee("Finance and Corporate Function","Technology",auditors.get(3-1)));
+	
 			
-//			// For auditee at index 0
-//			auditees.get(0).addAssessmentScore(new AssessmentScore("Change", 0.20, 2, 7, 4, 9, 1, 6, 0, 8, 3, 2, 0, 1, 5, 6, 7, 8, 9, 4));
-//			auditees.get(0).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 3, 6, 2, 9, 4, 5, 1, 7, 8, 0, 2, 3, 5, 6, 7, 9, 1, 4));
-//			auditees.get(0).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 1, 5, 7, 0, 8, 2, 3, 4, 9, 6, 0, 1, 2, 4, 5, 7, 8, 3));
-//			auditees.get(0).addAssessmentScore(new AssessmentScore("Financial", 0.10, 6, 2, 1, 0, 7, 3, 5, 8, 9, 4, 1, 2, 3, 5, 7, 8, 0, 6));
-//			auditees.get(0).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 9, 5, 0, 3, 8, 2, 1, 6, 7, 4, 0, 2, 3, 5, 7, 8, 1, 4));
-//			auditees.get(0).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 8, 4, 1, 9, 6, 3, 5, 0, 7, 2, 8, 0, 1, 2, 4, 5, 7, 9));
-//			auditees.get(0).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 3, 7, 8, 0, 2, 1, 6, 9, 4, 5, 3, 0, 2, 4, 5, 7, 8, 6));
-//			auditees.get(0).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 5, 9, 6, 4, 0, 2, 3, 1, 7, 2, 3, 5, 7, 8, 1, 4, 6, 9));
-//			auditees.get(0).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 4, 2, 1, 0, 8, 3, 9, 6, 7, 5, 0, 2, 3, 5, 7, 4, 6, 9));
-//
-//			// For auditee at index 1
-//			auditees.get(1).addAssessmentScore(new AssessmentScore("Change", 0.20, 7, 4, 9, 1, 6, 0, 8, 3, 2, 0, 1, 5, 6, 7, 8, 9, 4, 3));
-//			auditees.get(1).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 6, 2, 9, 4, 5, 1, 7, 8, 0, 2, 3, 5, 6, 7, 9, 1, 4, 8));
-//			auditees.get(1).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 5, 7, 0, 8, 2, 3, 4, 9, 6, 0, 1, 2, 4, 5, 7, 8, 3, 9));
-//			auditees.get(1).addAssessmentScore(new AssessmentScore("Financial", 0.10, 2, 1, 0, 7, 3, 5, 8, 9, 4, 1, 2, 3, 5, 7, 8, 0, 6, 9));
-//			auditees.get(1).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 5, 0, 3, 8, 2, 1, 6, 7, 4, 0, 2, 3, 5, 7, 8, 1, 4, 6));
-//			auditees.get(1).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 4, 1, 9, 6, 3, 5, 0, 7, 2, 8, 0, 1, 2, 4, 5, 7, 9, 6));
-//			auditees.get(1).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 7, 8, 0, 2, 1, 6, 9, 4, 5, 3, 0, 2, 4, 5, 7, 8, 6, 9));
-//			auditees.get(1).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 9, 6, 4, 0, 2, 3, 1, 7, 8, 0, 2, 3, 5, 7, 8, 6, 9, 5));
-//			auditees.get(1).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 0, 8, 3, 9, 6, 7, 5, 0, 2, 3, 5, 7, 8, 6, 9, 4));
-//			
-//			// For auditee at index 2
-//			auditees.get(2).addAssessmentScore(new AssessmentScore("Change", 0.20, 2, 3, 1, 0, 7, 8, 9, 4, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(2).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 1, 3, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(2).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 3, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(2).addAssessmentScore(new AssessmentScore("Financial", 0.10, 1, 2, 3, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(2).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 0, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(2).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 2, 3, 1, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(2).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 3, 2, 1, 0, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(2).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 3, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(2).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 3, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//
-//			// For auditee at index 4
-//			auditees.get(3).addAssessmentScore(new AssessmentScore("Change", 0.20, 2, 3, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(3).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(3).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 1, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(3).addAssessmentScore(new AssessmentScore("Financial", 0.10, 1, 2, 3, 0, 7, 8, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(3).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 0, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(3).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 2, 3, 1, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(3).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 3, 2, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(3).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(3).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 3, 0, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			
-//			auditees.get(4).addAssessmentScore(new AssessmentScore("Change", 0.20, 2, 3, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(4).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(4).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 1, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(4).addAssessmentScore(new AssessmentScore("Financial", 0.10, 1, 2, 3, 0, 7, 8, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(4).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 0, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(4).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 2, 3, 1, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(4).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 3, 2, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(4).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(4).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 3, 0, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//
-//			
-//			auditees.get(5).addAssessmentScore(new AssessmentScore("Change", 0.20, 2, 3, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(5).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(5).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 1, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(5).addAssessmentScore(new AssessmentScore("Financial", 0.10, 1, 2, 3, 0, 7, 8, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(5).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 0, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(5).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 2, 3, 1, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(5).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 3, 2, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(5).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(5).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 3, 0, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			
-//			
-//			auditees.get(6).addAssessmentScore(new AssessmentScore("Change", 0.20, 2, 3, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(6).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(6).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 1, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(6).addAssessmentScore(new AssessmentScore("Financial", 0.10, 1, 2, 3, 0, 7, 8, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(6).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 0, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(6).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 2, 3, 1, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(6).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 3, 2, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(6).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(6).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 3, 0, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//
-//			auditees.get(7).addAssessmentScore(new AssessmentScore("Change", 0.20, 2, 3, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(7).addAssessmentScore(new AssessmentScore("Recent Audit Rating", 0.15, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(7).addAssessmentScore(new AssessmentScore("Duration from Last Audit", 0.10, 1, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(7).addAssessmentScore(new AssessmentScore("Financial", 0.10, 1, 2, 3, 0, 7, 8, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(7).addAssessmentScore(new AssessmentScore("New Regulatory Requirements", 0.10, 0, 2, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(7).addAssessmentScore(new AssessmentScore("Complexity", 0.10, 2, 3, 1, 0, 7, 8, 9, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//			auditees.get(7).addAssessmentScore(new AssessmentScore("IT System Risk", 0.10, 3, 2, 1, 0, 7, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(7).addAssessmentScore(new AssessmentScore("Risk Rating of Recent Incidents", 0.10, 1, 0, 7, 8, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 4, 6, 7));
-//			auditees.get(7).addAssessmentScore(new AssessmentScore("Emerging Risks", 0.05, 2, 1, 3, 0, 9, 4, 5, 6, 0, 2, 3, 5, 7, 8, 9, 1, 4, 6));
-//
-//			auditeeRepo.saveAll(auditees);
+//		------------------------------------------------------------------------------------------------	
+			//setting up of scores
+			
 			//medium
 			for (int i = 0; i< 15;i++) {
 				
@@ -297,10 +214,49 @@ public class AuditPlannerApplication {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			
 			List<PreviousAudit> previousAudits = new ArrayList<>();
-			previousAudits.add(new PreviousAudit(auditees.get(0),"Medium",dateFormat.parse("2023-01-30"),"Medium",2,1,0,0,1,3));
-			previousAudits.add(new PreviousAudit(auditees.get(1),"Medium",dateFormat.parse("2023-02-15"),"Medium",2,1,0,0,1,3));
-			previousAudits.add(new PreviousAudit(auditees.get(3),"High",dateFormat.parse("2023-03-10"),"Medium",2,1,0,0,1,4));
-	
+			previousAudits.add(new PreviousAudit(auditees.get(0),"Medium Risk",dateFormat.parse("2023-01-30"),"Satisfactory",0,1,3,0,1,3));
+			previousAudits.add(new PreviousAudit(auditees.get(1),"Medium Risk",dateFormat.parse("2022-02-15"),"Satisfactory",0,1,1,2,1,0));
+			previousAudits.add(new PreviousAudit(auditees.get(2),"Low Risk",dateFormat.parse("2023-02-28"),"Not Audited",0,0,0,0,1,2));
+			previousAudits.add(new PreviousAudit(auditees.get(3),"Low Risk",dateFormat.parse("2023-03-1"),"Not Audited",0,0,1,0,1,1));
+			previousAudits.add(new PreviousAudit(auditees.get(4),"High Risk",dateFormat.parse("2023-03-10"),"Needs Improvement",4,3,3,1,1,4));
+			previousAudits.add(new PreviousAudit(auditees.get(5),"High Risk",dateFormat.parse("2022-03-20"),"Needs Improvement",3,5,1,3,1,4));
+			previousAudits.add(new PreviousAudit(auditees.get(6),"Medium Risk",dateFormat.parse("2023-03-25"),"Satisfactory",1,4,3,0,1,4));
+			previousAudits.add(new PreviousAudit(auditees.get(7),"Medium Risk",dateFormat.parse("2023-04-2"),"Needs Improvement",4,3,1,1,2,4));
+			previousAudits.add(new PreviousAudit(auditees.get(8),"Medium Risk",dateFormat.parse("2022-04-5"),"Satisfactory",1,1,0,0,1,1));
+			previousAudits.add(new PreviousAudit(auditees.get(9),"High Risk",dateFormat.parse("2023-04-10"),"Needs Improvement",4,2,2,2,1,4));
+			previousAudits.add(new PreviousAudit(auditees.get(10),"Low Risk",dateFormat.parse("2023-04-15"),"Satisfactory",0,1,0,0,0,0));
+			previousAudits.add(new PreviousAudit(auditees.get(11),"Medium Risk",dateFormat.parse("2022-05-5"),"Satisfactory",0,2,1,1,0,1));
+			previousAudits.add(new PreviousAudit(auditees.get(12),"Medium Risk",dateFormat.parse("2023-05-15"),"Satisfactory",0,3,2,1,1,1));
+			previousAudits.add(new PreviousAudit(auditees.get(13),"Medium Risk",dateFormat.parse("2022-05-31"),"Satisfactory",0,5,1,3,2,1));
+			previousAudits.add(new PreviousAudit(auditees.get(14),"Medium Risk",dateFormat.parse("2023-06-5"),"Needs Improvement",5,3,4,5,5,1));
+			previousAudits.add(new PreviousAudit(auditees.get(15),"Low Risk",dateFormat.parse("2023-06-10"),"Needs Improvement",2,5,4,5,4,3));
+			previousAudits.add(new PreviousAudit(auditees.get(16),"Low Risk",dateFormat.parse("2023-06-12"),"Satisfactory",0,1,5,0,1,4));
+			previousAudits.add(new PreviousAudit(auditees.get(17),"Medium Risk",dateFormat.parse("2022-06-18"),"Satisfactory",0,3,5,0,1,1));
+			previousAudits.add(new PreviousAudit(auditees.get(18),"High Risk",dateFormat.parse("2023-07-1"),"Poor",5,4,5,2,1,4));
+			previousAudits.add(new PreviousAudit(auditees.get(19),"Low Risk",dateFormat.parse("2023-07-5"),"Poor",2,12,3,4,3,1));
+			previousAudits.add(new PreviousAudit(auditees.get(20),"Medium Risk",dateFormat.parse("2023-07-10"),"Needs Improvement",4,2,0,3,2,7));
+			previousAudits.add(new PreviousAudit(auditees.get(21),"Medium Risk",dateFormat.parse("2023-07-19"),"Satisfactory",0,2,5,0,0,2));
+			previousAudits.add(new PreviousAudit(auditees.get(22),"Medium Risk",dateFormat.parse("2022-08-2"),"Fail",10,5,3,2,3,1));
+			previousAudits.add(new PreviousAudit(auditees.get(23),"High Risk",dateFormat.parse("2022-08-3"),"Satisfactory",0,1,1,0,0,1));
+			previousAudits.add(new PreviousAudit(auditees.get(24),"High Risk",dateFormat.parse("2023-08-12"),"Needs Improvement",2,2,2,3,2,1));
+			previousAudits.add(new PreviousAudit(auditees.get(25),"Low Risk",dateFormat.parse("2022-09-2"),"Satisfactory",0,3,3,0,1,1));
+			previousAudits.add(new PreviousAudit(auditees.get(26),"Medium Risk",dateFormat.parse("2023-09-8"),"Satisfactory",0,2,2,3,3,3));
+			previousAudits.add(new PreviousAudit(auditees.get(27),"Medium Risk",dateFormat.parse("2023-09-17"),"Unsatisfactory",15,12,3,1,1,1));
+			previousAudits.add(new PreviousAudit(auditees.get(28),"Low Risk",dateFormat.parse("2023-09-20"),"Not Audited",0,0,0,0,1,4));
+			previousAudits.add(new PreviousAudit(auditees.get(29),"Medium Risk",dateFormat.parse("2023-10-10"),"Needs Improvement",2,4,0,0,7,2));
+			previousAudits.add(new PreviousAudit(auditees.get(30),"High Risk",dateFormat.parse("2023-10-12"),"Satisfactory",0,1,0,0,1,1));
+			previousAudits.add(new PreviousAudit(auditees.get(31),"High Risk",dateFormat.parse("2023-10-15"),"Fail",7,5,0,0,1,8));
+			previousAudits.add(new PreviousAudit(auditees.get(32),"Medium Risk",dateFormat.parse("2022-10-16"),"Satisfactory",0,1,5,4,2,1));
+			previousAudits.add(new PreviousAudit(auditees.get(33),"Medium Risk",dateFormat.parse("2023-10-25"),"Satisfactory",0,4,1,3,1,1));
+			previousAudits.add(new PreviousAudit(auditees.get(34),"Medium Risk",dateFormat.parse("2023-11-1"),"Satisfactory",1,0,1,0,1,1));
+			previousAudits.add(new PreviousAudit(auditees.get(35),"High Risk",dateFormat.parse("2023-11-5"),"Satisfactory",0,1,0,6,2,0));
+			previousAudits.add(new PreviousAudit(auditees.get(36),"Low Risk",dateFormat.parse("2023-11-9"),"Satisfactory",0,4,2,0,1,5));
+			previousAudits.add(new PreviousAudit(auditees.get(37),"Medium Risk",dateFormat.parse("2022-11-19"),"Satisfactory",0,1,3,0,5,4));
+			previousAudits.add(new PreviousAudit(auditees.get(38),"High Risk",dateFormat.parse("2023-12-1"),"Needs Improvement",3,5,4,4,5,6));
+			previousAudits.add(new PreviousAudit(auditees.get(39),"Low Risk",dateFormat.parse("2023-12-12"),"Needs Improvement",4,4,4,0,2,3));
+			previousAudits.add(new PreviousAudit(auditees.get(40),"Medium Risk",dateFormat.parse("2023-12-18"),"Satisfactory",0,1,7,7,6,1));
+			
+			
 			previousAuditRepo.saveAll(previousAudits);
 			previousAuditRepo.findAll().forEach(System.out::println);	
 				
